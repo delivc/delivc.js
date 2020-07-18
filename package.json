@@ -1,0 +1,13 @@
+{
+  "name": "delivc",
+  "version": "0.0.0.-determined-by-semantic-release",
+  "description": "Client for Delivc Content Delivery API",
+  "main": "./dist/delivc.node.js",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/delivc/delivc.js.git"
+  },
+  "author": "Julian Koehn <me@julian.pro>",
+  "license": "MIT",
+  "private": false
+}
