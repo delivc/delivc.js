@@ -1,3 +1,3 @@
-export function wrapNavigation(data: any) {
-    return data
+export function wrapNavigation (data: any) {
+  return data
 }
