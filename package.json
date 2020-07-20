@@ -3,6 +3,9 @@
   "version": "0.0.0-semantically-released",
   "description": "Client for Delivc Content Delivery API",
   "main": "./dist/delivc.node.js",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/delivc/delivc.js.git"
@@ -11,6 +14,16 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "clean": "rimraf coverage && rimraf dist",
+    "build": "yarn clean && yarn build:modules && yarn build:standalone",
+    "build:modules": "BABEL_ENV=modules babel ./src -d dist/es-modules/ --extensions .ts,.tsx",
+    "build:standalone": "NODE_ENV=development webpack && NODE_ENV=production webpack",
+    "build:standalone:log": "NODE_ENV=production WEBPACK_MODE=log webpack --json --profile --progress > webpack-build-log.json && webpack-bundle-analyzer webpack-build-log.json",
+    "postbuild": "yarn check:browser && yarn check:legacy && yarn check:modules",
+    "check:legacy": "es-check es5 ./dist/delivc.legacy.js ./dist/delivc.legacy.min.js",
+    "check:browser": "es-check es6 ./dist/delivc.browser.js ./dist/delivc.browser.min.js",
+    "check:node": "es-check es6 ./dist/delivc.node.js ./dist/delivc.node.min.js",
+    "check:modules": "es-check es6 --module ./dist/es-modules/**/*.js",
     "lint": "eslint --ignore-path .gitignore ./src/**/*",
     "test": "jest",
     "semantic-release": "semantic-release",
@@ -42,9 +55,12 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "jest": "^26.1.0",
+    "lodash-webpack-plugin": "^0.11.5",
     "rimraf": "^3.0.2",
     "semantic-release": "^17.1.1",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "@delivc/delivc-sdk-core": "^1.2.1",
@@ -52,19 +68,19 @@
   },
   "jest": {
     "roots": [
-        "<rootDir>/src"
+      "<rootDir>/src"
     ],
     "transform": {
-        "^.+\\.tsx?$": "ts-jest"
+      "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
     "moduleFileExtensions": [
-        "ts",
-        "tsx",
-        "js",
-        "jsx",
-        "json",
-        "node"
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
     ]
   },
   "publishConfig": {
