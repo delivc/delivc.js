@@ -15,7 +15,7 @@
   "private": false,
   "scripts": {
     "clean": "rimraf coverage && rimraf dist",
-    "build": "yarn clean && yarn build:modules && yarn build:standalone",
+    "build": "yarn clean && tsc --outDir dist --declarationDir dist --declaration true && yarn build:modules && yarn build:standalone",
     "build:modules": "BABEL_ENV=modules babel ./src -d dist/es-modules/ --extensions .ts,.tsx",
     "build:standalone": "NODE_ENV=development webpack && NODE_ENV=production webpack",
     "build:standalone:log": "NODE_ENV=production WEBPACK_MODE=log webpack --json --profile --progress > webpack-build-log.json && webpack-bundle-analyzer webpack-build-log.json",
