@@ -8,6 +8,7 @@
   "files": [
     "dist"
   ],
+  "types": "dist/es-module/delivc.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/delivc/delivc.js.git"
