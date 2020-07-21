@@ -30,6 +30,11 @@ export interface CreateClientParams {
     retryLimit?: number
 }
 
+export interface authParams {
+    email: string,
+    password: string
+}
+
 export interface getNavigationParams {
     depth?: number
 }

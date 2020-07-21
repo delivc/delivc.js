@@ -1,7 +1,7 @@
 import { AxiosInstance, AxiosError } from 'axios'
 import entities from './entities'
 import { getNavigationEndpoint } from './endpoints'
-import { getNavigationParams, NavigationCategory } from './types'
+import { getNavigationParams, NavigationCategory, authParams } from './types'
 /**
  * Delivc Delivery API Client. Contains methods which allow access to the
  * different kinds of entities present in Delivc (Products, Assets, etc).
@@ -28,6 +28,11 @@ export default function createDelivcApi({ http }: { http: AxiosInstance }) {
         
 
         throw error
+    }
+
+    async function auth(params: authParams) {
+        // handle auth add to headers
+        return Promise.resolve()
     }
 
 
