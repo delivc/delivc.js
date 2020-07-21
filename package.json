@@ -3,6 +3,8 @@
   "version": "0.0.0-semantically-released",
   "description": "Client for Delivc Content Delivery API",
   "main": "./dist/delivc.node.js",
+  "module": "./dist/es-modules/delivc.js",
+  "jsnext:main": "./dist/es-modules/delivc.js",
   "files": [
     "dist"
   ],
@@ -15,7 +17,7 @@
   "private": false,
   "scripts": {
     "clean": "rimraf coverage && rimraf dist",
-    "build": "yarn clean && tsc --outDir dist --declarationDir dist --declaration true && yarn build:modules && yarn build:standalone",
+    "build": "yarn clean && tsc --outDir dist/es-modules --rootDir src --declarationDir dist/es-modules --d true && yarn build:modules && yarn build:standalone",
     "build:modules": "BABEL_ENV=modules babel ./src -d dist/es-modules/ --extensions .ts,.tsx",
     "build:standalone": "NODE_ENV=development webpack && NODE_ENV=production webpack",
     "build:standalone:log": "NODE_ENV=production WEBPACK_MODE=log webpack --json --profile --progress > webpack-build-log.json && webpack-bundle-analyzer webpack-build-log.json",
@@ -68,6 +70,9 @@
   "dependencies": {
     "@delivc/delivc-sdk-core": "^1.2.1",
     "axios": "^0.19.2"
+  },
+  "engines": {
+    "node": ">=6"
   },
   "jest": {
     "roots": [
