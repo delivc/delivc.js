@@ -13,23 +13,19 @@ export function createClient(params: CreateClientParams) {
         throw new TypeError('Expected paramter AccessToken')
     }
 
-    const config = {
-        ...params
-    }
-
     // @ts-ignore
     const userAgentHeader = getUserAgentHeader(`delivc.js/${__VERSION__}`,
-        config.application ?? "",
-        config.integration ?? ""
+        params.application ?? "",
+        params.integration ?? ""
     )
 
-    config.headers = {
-        ...config.headers,
+    params.headers = {
+        ...params.headers,
         'Content-Type': 'application/vnd.delivc.delivery.v1+json',
         'X-Delivc-User-Agent': userAgentHeader
     }
 
-    const http = createHttpClient(axios, config as httpClientConfig)
+    const http = createHttpClient(axios, params as httpClientConfig)
 
     return createDelivcApi({ http })
 }
