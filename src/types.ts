@@ -29,3 +29,7 @@ export interface CreateClientParams {
     timeout?: number
     retryLimit?: number
 }
+
+export interface getNavigationParams {
+    depth?: number
+}

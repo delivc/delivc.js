@@ -21,7 +21,7 @@ export function createClient(params: CreateClientParams) {
 
     params.headers = {
         ...params.headers,
-        'Content-Type': 'application/vnd.delivc.delivery.v1+json',
+        'Content-Type': 'application/json',
         'X-Delivc-User-Agent': userAgentHeader
     }
 
