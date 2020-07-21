@@ -33,3 +33,19 @@ export interface CreateClientParams {
 export interface getNavigationParams {
     depth?: number
 }
+
+export interface Meta {
+    title: string
+    description: string
+    keywords: string
+}
+
+export interface NavigationCategory {
+    id: string
+    childCount: number
+    children: NavigationCategory[]
+    meta: Meta
+    parentId: string | null
+    url: string | null
+    type: 'category'
+}
